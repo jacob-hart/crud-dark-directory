@@ -1,6 +1,6 @@
 <template>
 <div class="row d-flex justify-content-center mt-3">
-  <div class="product" v-for="product in products" :key="product.id">
+  <div class="product" v-for="product in products" :key="product._id">
     <div v-if="product.dark == 0">
       <div id="card-0" class="card border-danger bg-dark m-3" style="width: 18rem;">
         <div class="card-body">
@@ -8,7 +8,7 @@
           <h6 class="card-text mb-2 text-danger btn nohover btn-outline-danger py-1 px-2">No.</h6>
           <br>
           <p class="card-text text-light mb-0">{{truncate(product.context)}}</p>
-          <router-link :to="'/product/' + product.id" class="card-text text-muted stretched-link"></router-link>
+          <router-link :to="'/product/' + product._id" class="card-text text-muted stretched-link"></router-link>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
           <h6 class="card-text mb-2 text-success btn nohover btn-outline-success py-1 px-2">Yes!</h6>
           <br>
           <p class="card-text text-light mb-0">{{truncate(product.context)}}</p>
-          <router-link :to="'/product/' + product.id" class="card-text text-muted stretched-link"></router-link>
+          <router-link :to="'/product/' + product._id" class="card-text text-muted stretched-link"></router-link>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
           <h6 class="card-text text-warning btn nohover btn-outline-warning py-1 px-2">Yes, but...</h6>
           <br>
           <p class="card-text text-light mb-0">{{truncate(product.context)}}</p>
-          <router-link :to="'/product/' + product.id" class="card-text text-muted stretched-link"></router-link>
+          <router-link :to="'/product/' + product._id" class="card-text text-muted stretched-link"></router-link>
         </div>
       </div>
     </div>
