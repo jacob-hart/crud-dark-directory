@@ -79,7 +79,7 @@ app.get('/api/products/:id', async (req, res) => {
 // });
 
 const productSchema = new mongoose.Schema({
-  _id: ObjectId,
+  _id: mongoose.Types.ObjectId,
   name: String,
   dark: String,
   context: String,
