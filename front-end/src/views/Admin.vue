@@ -33,7 +33,7 @@ export default {
   methods: {
     async addProduct() {
       try {
-        await axios.post('/api/items', {
+        await axios.post('/api/products', {
           name: this.name,
           dark: this.dark,
           context: this.context
