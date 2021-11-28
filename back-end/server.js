@@ -10,19 +10,19 @@ app.use(bodyParser.urlencoded({
 const mongoose = require('mongoose');
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/museum', {
+mongoose.connect('mongodb://localhost:27017/dark', {
   useNewUrlParser: true
 });
 .
 app.post('/api/products', async (req, res) => {
-  const item = new Item({
-    title: req.body.title,
-    desc: req.body.desc,
-    path: req.body.path,
+  const product = new Product({
+    name: req.body.name,
+    dark: req.body.dark,
+    context: req.body.context,
   });
   try {
-    await item.save();
-    res.send(item);
+    await product.save();
+    res.send(product);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -31,8 +31,8 @@ app.post('/api/products', async (req, res) => {
 
 app.get('/api/products', async (req, res) => {
   try {
-    let items = await Item.find();
-    res.send(items);
+    let products = await Product.find();
+    res.send(products);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -41,7 +41,7 @@ app.get('/api/products', async (req, res) => {
 
 app.delete('/api/products/:id', async (req, res) => {
   try {
-    await Item.deleteOne({
+    await Product.deleteOne({
       _id: req.params.id
     });
     res.sendStatus(200);
@@ -53,27 +53,27 @@ app.delete('/api/products/:id', async (req, res) => {
 
 app.put('/api/products/:id', async (req, res) => {
   try {
-    let item = await Item.findOne({
+    let product = await Product.findOne({
       _id: req.params.id
     });
-    item.title = req.body.title
-    item.desc = req.body.desc
-    await item.save();
-    res.send(item);
+    product.name = req.body.name
+    product.dark = req.body.dark
+    product.context = req.body.context
+    await product.save();
+    res.send(product);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-// Create a scheme for items in the museum: a title and a path to an image.
-const itemSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: String,
   dark: String,
   context: String,
 });
 
 // Create a model for items in the museum.
-const Item = mongoose.model('Item', itemSchema);
+const Product = mongoose.model('Product', productSchema);
 
 app.listen(3001, () => console.log('Server listening on port 3001!'));
