@@ -15,12 +15,12 @@ mongoose.connect('mongodb://localhost:27017/dark', {
 
 app.post('/api/products', async (req, res) => {
   const product = new Product({
-    // _id: req.body.id,
     name: req.body.name,
     dark: req.body.dark,
     context: req.body.context,
   });
   try {
+    product[_id] = await Product.findOne().sort({_id: "asc"})._id + 1;
     await product.save();
     res.send(product);
   } catch (error) {
