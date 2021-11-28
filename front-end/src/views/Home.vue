@@ -11,6 +11,7 @@
 
 
 <script>
+import axios from 'axios';
 import ProductList from "../components/ProductList.vue"
 export default {
   name: 'Home',
@@ -20,13 +21,28 @@ export default {
   data() {
     return {
       searchText: '',
+      products: [],
     }
   },
   computed: {
-    products() {
-      return this.$root.$data.products.filter(product => product.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
+    filteredProducts() {
+      return this.products.filter(product => product.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
     }
   },
+  created() {
+    this.getProducts();
+  },
+  methods: {
+    async getProducts() {
+      try {
+        let response = await axios.get("/api/products");
+        this.products = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  }
 }
 </script>
 
