@@ -52,7 +52,7 @@ export default {
   methods: {
     async getProduct() {
       try {
-        let response = await axios.get("/api/product/" + this.$route.params.id);
+        let response = await axios.get("/api/products/" + this.$route.params.id);
         this.product = response.data;
         return true;
       } catch (error) {
