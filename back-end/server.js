@@ -38,7 +38,7 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
-app.get('/api/products/:id', async (req, res) => {
+app.get('/api/product/:id', async (req, res) => {
   try {
     let product = await Product.findOne({
       _id: req.params.id
@@ -79,7 +79,6 @@ app.get('/api/products/:id', async (req, res) => {
 // });
 
 const productSchema = new mongoose.Schema({
-  _id: mongoose.Types.ObjectId,
   name: String,
   dark: String,
   context: String,
