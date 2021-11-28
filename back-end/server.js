@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/dark', {
   useNewUrlParser: true
 });
-.
+
 app.post('/api/products', async (req, res) => {
   const product = new Product({
     name: req.body.name,
