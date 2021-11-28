@@ -38,13 +38,28 @@
 
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Detail',
-  computed: {
-    product() {
-      return this.$root.$data.products[this.$route.params.id - 1]
+  data() {
+    return {
+      product: {},
     }
   },
+  created() {
+    this.getProduct();
+  },
+  methods: {
+    async getProduct() {
+      try {
+        let response = await axios.get("/api/products/" + this.$route.params.id);
+        this.product = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  }
 }
 </script>
 

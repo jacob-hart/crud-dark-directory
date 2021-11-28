@@ -38,6 +38,18 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
+app.get('/api/products/:id', async (req, res) => {
+  try {
+    let product = await Product.findOne({
+      _id: req.params.id
+    });
+    res.send(product);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 app.delete('/api/products/:id', async (req, res) => {
   try {
     await Product.deleteOne({
