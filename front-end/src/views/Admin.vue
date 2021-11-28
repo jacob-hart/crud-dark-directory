@@ -7,9 +7,9 @@
         <input v-model="name" placeholder="Enter the product's name" class="form-control bg-dark text-light border-light"/>
         <label class="mt-3 text-light font-weight-normal">Does it have a dark theme?</label>
         <select v-model="dark" class="form-control bg-dark text-light border-light" name="dark">
-          <option value="0">Yes!</option>
-          <option value="1">Yes, but...</option>
-          <option value="2">No</option>
+          <option value="1">Yes!</option>
+          <option value="2">Yes, but...</option>
+          <option value="0">No</option>
         </select>
         <label class="mt-3 text-light font-weight-normal">Context</label>
         <textarea v-model="context" placeholder="Enter a description" rows="3" class="form-control bg-dark text-light border-light"/>

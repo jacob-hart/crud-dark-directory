@@ -20,7 +20,6 @@ app.post('/api/products', async (req, res) => {
     context: req.body.context,
   });
   try {
-    //product._id = await Product.findOne().sort({_id: "asc"})._id + 1;
     await product.save();
     res.send(product);
   } catch (error) {
@@ -80,7 +79,6 @@ app.get('/api/products/:id', async (req, res) => {
 // });
 
 const productSchema = new mongoose.Schema({
-  //_id: String,
   name: String,
   dark: String,
   context: String,
