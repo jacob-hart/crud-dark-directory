@@ -1,27 +1,48 @@
 <template>
 <div>
-  <h3 class="text-light text-center mb-4 mt-3">Admin</h3>
-    <div class="d-flex justify-content-center">
+  <h3 class="text-light text-center mb-4 mt-3">Add a product</h3>
+    <div class="row justify-content-center">
       <div class="col-6">
-        <label class="mt-3 text-light font-weight-normal">Name</label>
-        <input class="form-control bg-dark text-light border-light"/>
-        <label class="mt-3 text-light font-weight-normal">Dark?</label>
-        <select class="form-control bg-dark text-light border-light" name="dark">
+        <label class="text-light font-weight-normal">Product name</label>
+        <input v-model="name" placeholder="Enter the product's name" class="form-control bg-dark text-light border-light"/>
+        <label class="mt-3 text-light font-weight-normal">Does it have a dark theme?</label>
+        <select v-model="dark" class="form-control bg-dark text-light border-light" name="dark">
           <option value="0">Yes!</option>
           <option value="1">Yes, but...</option>
           <option value="2">No</option>
         </select>
         <label class="mt-3 text-light font-weight-normal">Context</label>
-        <textarea class="form-control bg-dark text-light border-light"/>
-        <button id="submit" class="mt-4 btn btn-lg text-light border-light py-1 px-2">Add Item</button>
+        <textarea v-model="context" placeholder="Enter a description" rows="3" class="form-control bg-dark text-light border-light"/>
+        <button @click="addProduct" id="submit" class="mt-4 btn btn-lg text-light border-light">Add to database</button>
       </div>
     </div>
 </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  name: 'About',
+  name: 'Admin',
+  data() {
+    return {
+      name: "",
+      dark: "",
+      context: "",
+    }
+  },
+  methods: {
+    async addProduct() {
+      try {
+        await axios.post('/api/items', {
+          name: this.name,
+          dark: this.dark,
+          context: this.context
+        }); 
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  }
 }
 </script>
 
