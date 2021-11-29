@@ -18,7 +18,7 @@
     <div class="col-4 ml-3  ">
       <h3 class="text-light text-center mb-3">Edit or delete a product</h3>
       <label class="text-light font-weight-normal">Product name</label>
-      <select v-model="editName" class="form-control bg-dark text-light border-light" name="dark">
+      <select @change="onSelectEditProduct" class="form-control bg-dark text-light border-light" name="dark">
         <option v-for="product in products" :key="product._id">{{product.name}}</option>
       </select>
       <label class="mt-3 text-light font-weight-normal">Does it have a dark theme?</label>
@@ -45,7 +45,7 @@ export default {
       addName: "",
       addDark: "1",
       addContext: "",
-      editName: "",
+      currentProduct: null,
       editDark: "1",
       editContext: "",
       products: [],
@@ -76,6 +76,10 @@ export default {
         console.log(error);
       }
     },
+    onSelectEditProduct(e) {
+      //currentProduct = products[e.target.value]
+      console.log(e)
+    }
   }
 }
 </script>
