@@ -77,7 +77,7 @@ export default {
       }
     },
     onSelectEditProduct(e) {
-      currentProduct = products.find( ({ name }) => name === e.target.value);
+      this.currentProduct = this.products.find( ({ name }) => name === e.target.value);
     }
   }
 }
