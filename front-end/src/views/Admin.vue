@@ -77,8 +77,7 @@ export default {
       }
     },
     onSelectEditProduct(e) {
-      //currentProduct = products[e.target.value]
-      console.log(e.target.key)
+      currentProduct = products.find( ({ name }) => name === e.target.value);
     }
   }
 }
