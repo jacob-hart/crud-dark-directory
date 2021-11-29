@@ -78,7 +78,7 @@ export default {
     },
     onSelectEditProduct(e) {
       //currentProduct = products[e.target.value]
-      console.log(e)
+      console.log(e.target.value)
     }
   }
 }
