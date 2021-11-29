@@ -36,8 +36,29 @@
       </div>
     </div>
   </div>
+  <div class="mt-5 row justify-content-center">
+    <transition name="fade">
+      <div v-if="doShowAlert" class="alert bg-dark text-light border-success" role="alert">
+        Product database updated!
+      </div>
+    </transition>
+  </div>
 </div>
 </template>
+
+<style>
+.fade-enter-active {
+  transition: opacity .1s ease-out;
+}
+
+.fade-leave-active {
+  transition: opacity .25s ease-in;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>
 
 <script>
 import axios from 'axios';
@@ -52,6 +73,7 @@ export default {
       editDark: "1",
       editContext: "",
       products: [],
+      doShowAlert: false,
     }
   },
   created() {
@@ -60,6 +82,7 @@ export default {
   methods: {
     async addProduct() {
       try {
+        this.showAlert();
         await axios.post('/api/products', {
           name: this.addName,
           dark: this.addDark,
@@ -76,6 +99,7 @@ export default {
           dark: this.editDark,
           context: this.editContext
         });
+        this.showAlert();
         this.getProducts(); 
       } catch (error) {
         console.log(error);
@@ -85,6 +109,7 @@ export default {
       try {
         await axios.delete('/api/products/' + this.currentProduct._id)
         this.currentProduct = null
+        this.showAlert();
         this.getProducts(); 
       } catch (error) {
         console.log(error);
@@ -99,11 +124,16 @@ export default {
         console.log(error);
       }
     },
+    async showAlert() {
+      this.doShowAlert = true;
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      this.doShowAlert = false;
+    },
     onSelectEditProduct(e) {
       this.currentProduct = this.products.find( ({ name }) => name === e.target.value);
       this.editDark = this.currentProduct.dark;
       this.editContext = this.currentProduct.context;
-    }
+    },
   }
 }
 </script>
