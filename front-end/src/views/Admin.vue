@@ -21,16 +21,18 @@
       <select @change="onSelectEditProduct" class="form-control bg-dark text-light border-light" name="dark">
         <option v-for="product in products" :key="product._id">{{product.name}}</option>
       </select>
-      <label class="mt-3 text-light font-weight-normal">Does it have a dark theme?</label>
-      <select v-model="editDark" class="form-control bg-dark text-light border-light" name="dark">
-        <option value="1">Yes!</option>
-        <option value="2">Yes, but...</option>
-        <option value="0">No</option>
-      </select>
-      <label class="mt-3 text-light font-weight-normal">Context</label>
-      <textarea v-model="editContext" placeholder="Enter a description" rows="3" class="form-control bg-dark text-light border-light"/>
-      <button @click="editProduct" id="submit" class="mt-3 btn btn-lg text-light border-light">Edit product</button>
-      <button @click="deleteProduct" id="submit" class="mt-3 ml-3 btn btn-lg text-light border-light">Delete product</button>
+      <div v-if="currentProduct">
+        <label class="mt-3 text-light font-weight-normal">Does it have a dark theme?</label>
+        <select v-model="editDark" class="form-control bg-dark text-light border-light" name="dark">
+          <option value="1">Yes!</option>
+          <option value="2">Yes, but...</option>
+          <option value="0">No</option>
+        </select>
+        <label class="mt-3 text-light font-weight-normal">Context</label>
+        <textarea v-model="editContext" placeholder="Enter a description" rows="3" class="form-control bg-dark text-light border-light"/>
+        <button @click="editProduct" id="submit" class="mt-3 btn btn-lg text-light border-light">Edit product</button>
+        <button @click="deleteProduct" id="submit" class="mt-3 ml-3 btn btn-lg text-light border-light">Delete product</button>
+      </div>
     </div>
   </div>
 </div>
@@ -78,6 +80,8 @@ export default {
     },
     onSelectEditProduct(e) {
       this.currentProduct = this.products.find( ({ name }) => name === e.target.value);
+      this.editDark = this.currentProduct.dark;
+      this.editContext = this.currentProduct.context;
     }
   }
 }
