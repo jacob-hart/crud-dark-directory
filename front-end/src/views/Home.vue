@@ -5,7 +5,7 @@
     <input class="form-control form-control-lg bg-dark text-light border-light" v-model="searchText" style="width: 50%; max-width: 15rem;" autofocus/>
     <h4 class="ml-3 mt-1 text-light text-nowrap font-weight-normal mt-3 mt-md-1">have a dark theme?</h4>
   </div>
-  <ProductList :products="products" />
+  <ProductList :products="filteredProducts" />
 </div>
 </template>
 
