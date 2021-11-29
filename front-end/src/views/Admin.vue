@@ -19,6 +19,7 @@
       <h3 class="text-light text-center mb-3">Edit or delete a product</h3>
       <label class="text-light font-weight-normal">Product name</label>
       <select @change="onSelectEditProduct" class="form-control bg-dark text-light border-light" name="dark">
+        <option :value="null">Select a product</option>
         <option v-for="product in products" :key="product._id">{{product.name}}</option>
       </select>
       <div v-if="currentProduct">
