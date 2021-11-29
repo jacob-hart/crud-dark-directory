@@ -72,7 +72,7 @@ export default {
     },
     async editProduct() {
       try {
-        await axios.put('/api/products' + this.currentProduct._id, {
+        await axios.put('/api/products/' + this.currentProduct._id, {
           dark: this.editDark,
           context: this.editContext
         });
@@ -83,7 +83,7 @@ export default {
     },
     async deleteProduct() {
       try {
-        await axios.delete('/api/products' + this.currentProduct._id)
+        await axios.delete('/api/products/' + this.currentProduct._id)
         this.currentProduct = null
         this.getProducts(); 
       } catch (error) {
