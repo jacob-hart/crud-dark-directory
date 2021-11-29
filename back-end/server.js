@@ -50,33 +50,32 @@ app.get('/api/products/:id', async (req, res) => {
   }
 });
 
-// app.delete('/api/products/:id', async (req, res) => {
-//   try {
-//     await Product.deleteOne({
-//       _id: req.params.id
-//     });
-//     res.sendStatus(200);
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(500);
-//   }
-// });
+app.delete('/api/products/:id', async (req, res) => {
+  try {
+    await Product.deleteOne({
+      _id: req.params.id
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
 
-// app.put('/api/products/:id', async (req, res) => {
-//   try {
-//     let product = await Product.findOne({
-//       _id: req.params.id
-//     });
-//     product.name = req.body.name
-//     product.dark = req.body.dark
-//     product.context = req.body.context
-//     await product.save();
-//     res.send(product);
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(500);
-//   }
-// });
+app.put('/api/products/:id', async (req, res) => {
+  try {
+    let product = await Product.findOne({
+      _id: req.params.id
+    });
+    product.dark = req.body.dark
+    product.context = req.body.context
+    await product.save();
+    res.send(product);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
 
 const productSchema = new mongoose.Schema({
   name: String,

@@ -70,6 +70,26 @@ export default {
         console.log(error);
       }
     },
+    async editProduct() {
+      try {
+        await axios.put('/api/products' + this.currentProduct._id, {
+          dark: this.editDark,
+          context: this.editContext
+        });
+        this.getProducts(); 
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteProduct() {
+      try {
+        await axios.delete('/api/products' + this.currentProduct._id)
+        this.currentProduct = null
+        this.getProducts(); 
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async getProducts() {
       try {
         let response = await axios.get("/api/products");
