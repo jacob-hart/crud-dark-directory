@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="row justify-content-center">
-    <div class="col-4 mr-3">
+    <div class="col-xs-8 col-sm-6 col-lg-5 mr-lg-3 mb-5">
       <h3 class="text-light text-center mb-3">Add a product</h3>
       <label class="text-light font-weight-normal">Product name</label>
       <input v-model="addName" placeholder="Enter the product's name" class="form-control bg-dark text-light border-light"/>
@@ -15,7 +15,7 @@
       <textarea v-model="addContext" placeholder="Enter a description" rows="3" class="form-control bg-dark text-light border-light"/>
       <button @click="addProduct" id="submit" class="mt-3 btn btn-lg text-light border-light">Add product</button>
     </div>
-    <div class="col-4 ml-3  ">
+    <div class="col-xs-8 col-sm-6 col-lg-5 ml-lg-3">
       <h3 class="text-light text-center mb-3">Edit or delete a product</h3>
       <label class="text-light font-weight-normal">Product name</label>
       <select @change="onSelectEditProduct" class="form-control bg-dark text-light border-light" name="dark">
